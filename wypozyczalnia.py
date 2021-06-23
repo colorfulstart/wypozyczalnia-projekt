@@ -16,14 +16,21 @@ class samochody(jednostka):
         self.drzwi = liczba_drzwi
         self.moc = moc_silnika
         self.spalanie = spalanie
-        self.skrznia = skrzynia_biegow
+        self.skrzynia = skrzynia_biegow
         self.zasieg = zasieg
 
     def wazne_info(self):
         return "Samochod: {} {} z {}, ma miejsca na".format(self.model, self.marka, self.rok)
 
+#rok_new, pasazerowie_new, drzwi_new, skrzynia_new
+    def info(self):
+        wypozyczalnia.ls.append([self.nazwa, self.model, self.marka, self.rok, self.pasazerowie, self.drzwi, self.skrzynia])
+
     def max_osob(self):
         return "Maksymalna liczba osob w pojezdzie to: {}".format(self.pasazerowie)
+
+
+
 
 
 class lodki(jednostka):
@@ -136,6 +143,7 @@ class pracownicy():
 
 
 
+
 class wypozyczalnia():
     def __init__(self, nr_wypozyczalni, lokalizacja):
         self.nr = nr_wypozyczalni
@@ -165,6 +173,36 @@ class wypozyczalnia():
     def pracow(self):
         return self.lp
 
+
+    def szukaj(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new):
+        tab = []
+        for i in range(len(self.ls)):
+            if model_new == self.ls[i][1]:
+                tab.append(self.ls[i][1])
+
+        for i in range(len(self.ls)):
+            if marka_new == self.ls[i][2]:
+                tab.append(self.ls[i][2])
+
+        for i in range(len(self.ls)):
+            if rok_new == self.ls[i][3]:
+                tab.append(self.ls[i][3])
+
+        for i in range(len(self.ls)):
+            if pasazerowie_new == self.ls[i][4]:
+                tab.append(self.ls[i][4])
+
+        for i in range(len(self.ls)):
+            if drzwi_new == self.ls[i][5]:
+                tab.append(self.ls[i][5])
+
+        for i in range(len(self.ls)):
+            if skrzynia_new == self.ls[i][6]:
+                tab.append(self.ls[i][6])
+
+        if len(tab) == 0:
+            return "Nie ma takich samochodow"
+        return tab
 
 
 
@@ -203,7 +241,7 @@ w1 = wypozyczalnia("1", "Wrocław")
 #jed1 = jednostka("S1-AB12", "opel", "insygnia", 400, 2003, 5)
 
 
-
+#dodani pracownicy
 p1 = pracownicy(1, "Tomasz", "Janusz")
 p2 = pracownicy(2, "Mateusz", "Rabiega")
 p3 = pracownicy(3, "Kamil", "Pajak")
@@ -215,6 +253,7 @@ w1.lp.append(p4.dane_pracownika())
 print(w1.ile_pracownikow())
 #print(w1.lp)
 #print(p1.dane_pracownika())
+
 
 
 #'''
@@ -231,10 +270,10 @@ if co1 == 2:
     print("1. zaglowa")
     print("2. motorowa")
     co2 = int(input("Wybierz rodzaj lodzi i wpisz odpowiadajacy mu numer: "))
-    if co2 == 1:
+    #if co2 == 1:
 
 
-    else:
+    #else:
 
 
 if co1 == 1:
@@ -245,7 +284,21 @@ if co1 == 1:
     print("1. Pokaz dostepne samochody")
     print("2. Szukam czegos konkretnego")
     co3 = int(input("Twój wybor: "))
-    if twoja stara = 0
+    if co3 == 1:
+        print(w1.ile_samochodow())
+        print(w1.ls)
+    else:
+        print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
+
+        model = input("Model samochodu: ")
+        marka = input("Marka samochodu: ")
+        rok = input("Rok produkcji: ")
+        pasa = input("Ile maksymalnie pasazerow: ")
+        drzwi = input("Ilu drzwiowy: ")
+        biegi = input("Jaka skrzynia biegow: ")
+
+        print("W podanej konfiguracji mamy takie samochody:")
+        print(w1.szukaj(model, marka, rok, pasa, drzwi, biegi))
 
 #'''
 
