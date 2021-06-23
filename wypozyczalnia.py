@@ -245,7 +245,7 @@ if co1 == 1:
     print("1. Pokaz dostepne samochody")
     print("2. Szukam czegos konkretnego")
     co3 = int(input("Twój wybor: "))
-    if
+    if twoja stara = 0
 
 #'''
 
