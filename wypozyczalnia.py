@@ -1,7 +1,6 @@
 import random
 import copy
 
-
 class Wypozyczalnia():
     def __init__(self, nr_wypozyczalni, lokalizacja):
         self.nr = nr_wypozyczalni
@@ -110,4 +109,3 @@ class Kalendarz():
 
 
     #def czy_dostepne(self, ):
-

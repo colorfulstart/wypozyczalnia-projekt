@@ -16,17 +16,15 @@ class Samochody(Jednostka):
         self.skrzynia = skrzynia_biegow
 
     def wazne_info(self):
-        return "Samochod: {} {} z {} (skrzynia biegow {}), ma miejsca na {} i jest {} drzwiowy. Moc jego silnika to {}, a spalanie ma na poziomie {}l/100km".format(self.model, self.marka, self.rok,
-                                                                                                          self.skrzynia, self.pasazerowie,self.drzwi, self.moc, self.spalanie)
+        return "Samochod: {} {} z {} (skrzynia biegow {}), ma miejsca na {} i jest {} drzwiowy. Moc jego silnika to {}KM, " \
+               "a spalanie ma na poziomie {}l/100km".format(self.model, self.marka, self.rok, self.skrzynia, self.pasazerowie,
+                                                            self.drzwi, self.moc, self.spalanie)
 
     def info(self):
         return [self.nazwa, self.model, self.marka, self.rok, self.pasazerowie, self.drzwi, self.skrzynia]
 
     def max_osob(self):
         return "Maksymalna liczba osob w pojezdzie to: {}".format(self.pasazerowie)
-
-
-
 
 
 class Lodki(Jednostka):
@@ -55,6 +53,11 @@ class Zagle(Lodki):
     def max_osob(self):
         return "Komfortowa liczba osob to {}, a maksywalna to {}".format(self.pasazerowie, self.pasazerowie+2)
 
+    def wazne_info(self):
+        return "Lódź zaglowa: {} {} z roku {} ma miejsca na {} przy czym {} koi. Długość całkowita to {}m, " \
+               "maksymalne zanurzenie {}cm, mamy tutaj {}. Czy potrzeba mieć patent by wypożyczyć łódź? {}".format(self.model, self.marka, self.rok, self.pasazerowie,
+                                                                                                                 self.koje, self.dlu, self.max_zanu, self.ster, self.patent)
+
 
 class Motorowe(Lodki):
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, silnik):
@@ -64,3 +67,8 @@ class Motorowe(Lodki):
     def max_osob(self):
         return "Maksymalna liczba osob to: {}".format(self.pasazerowie)
 
+    def wazne_info(self):
+        return "Lódź motorowa: {} {} z roku {} ma miejsca na {}. Długość całkowita to {}m, " \
+               "maksymalne zanurzenie {}cm, mamy tutaj {} i silnik o mocy {}KM. Czy potrzeba mieć patent by wypożyczyć łódź? {}".format(self.model, self.marka, self.rok,
+                                                                                                                                    self.pasazerowie, self.dlu, self.max_zanu,
+                                                                                                                                    self.ster, self.moc,self.patent)
