@@ -69,3 +69,5 @@ class Pracownik():
 
     def dane_pracownika(self):
         return "Pracownik nr {}: {} {}".format(self.nr, self.imie, self.nazw)
+    def przedstaw_sie(self):
+        print(f"Dzień dobry, jestem {self.imie} {self.nazw}. W czym mogę pomóc?")

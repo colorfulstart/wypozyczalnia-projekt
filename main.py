@@ -15,21 +15,20 @@ p1 = Pracownik(1, "Tomasz", "Janusz")
 p2 = Pracownik(2, "Mateusz", "Rabiega")
 p3 = Pracownik(3, "Kamil", "Pajak")
 p4 = Pracownik(4, "Marta", "Palma")
-W1.lp.append(p1.dane_pracownika())
-W1.lp.append(p2.dane_pracownika())
-W1.lp.append(p3.dane_pracownika())
-W1.lp.append(p4.dane_pracownika())
+W1.dodaj_pracownika(p1)
+W1.dodaj_pracownika(p2)
+W1.dodaj_pracownika(p3)
+W1.dodaj_pracownika(p4)
 print(W1.ile_pracownikow())
-#print(W1.lp)
-#print(P1.dane_pracownika())
+
 
 #cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow
-auto1 = Samochod("S1-AB11", "Touran", "Volkswagen", 500, 2014, 7, 5, 140, 5, "manual")
-auto2 = Samochod("S2-AB11", "Ignis", "Suziki", 350, 2009, 5, 5, 90, 4.5, "manual")
-auto3 = Samochod("S3-AB11", "Aigo", "Toyota", 400, 2016, 5, 5, 110, 6, "manual")
-auto4 = Samochod("S3-AB12", "Aigo", "Toyota", 400, 2016, 5, 5, 110, 6, "automat")
-auto5 = Samochod("S4-AB11", "Insygnia", "Opel", 470, 2011, 5, 5, 120, 7, "manual")
-auto6 = Samochod("S5-AB11", "Aigo", "Toyota", 400, 2016, 5, 5, 110, 6, "manual")
+auto1 = Samochod("S1-AB11", "Volkswagen", "Touran", 500, 2014, 7, 5, 140, 5, "manual")
+auto2 = Samochod("S2-AB11", "Suziki", "Ignis", 350, 2009, 5, 5, 90, 4.5, "manual")
+auto3 = Samochod("S3-AB11", "Toyota", "Aygo", 400, 2016, 5, 5, 110, 6, "manual")
+auto4 = Samochod("S3-AB12", "Toyota", "Aygo", 400, 2016, 5, 5, 110, 6, "automat")
+auto5 = Samochod("S4-AB11", "Opel", "Insygnia", 470, 2011, 5, 5, 120, 7, "manual")
+auto6 = Samochod("S5-AB11", "Toyota", "Aygo", 400, 2016, 5, 5, 110, 6, "manual")
 
 W1.dodaj_auto(auto1)
 W1.dodaj_auto(auto2)
@@ -69,61 +68,70 @@ W1.dodaj_lodke(lodka12)
 W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
+print(lodka8.info())
+print(lodka9.info())
 
 print("Witaj! Jak możemy Ci pomoc?")
 print("1. Chce zarezerwować samochód.")
 print("2. Chce zarezerwować lodke.")
-co1 = int(input("Wybierz numer: "))
+lodka_czy_auto = int(input("Wybierz numer: "))
+twoj_prac = random.choice(W1.lp)
+twoj_prac.przedstaw_sie()
 
-if co1 == 2: #chcemy lodke
-    twoj_prac = random.choice(W1.lp)
-    print("W wyborze pomoze ci: {}.".format(twoj_prac))
+if lodka_czy_auto == 1: #chcemy samochod
+    print("Chcesz zobaczyc wszystkie dostepne samochody, czy szukasz czegos konkretnego?")
+    print("1. Pokaz dostepne samochody")
+    print("2. Szukam czegos konkretnego")
+    wszystkie_czy_konkret = int(input("Twój wybor: "))
+    if wszystkie_czy_konkret == 1:
+        W1.ile_samochodow()
+        W1.wypisz_samochody()
+    elif wszystkie_czy_konkret == 2:
+        print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
 
+        marka = input("Marka samochodu: ")
+        model = input("Model samochodu: ")
+        rok = input("Rok produkcji: ")
+        pasa = input("Ile maksymalnie pasazerow: ")
+        drzwi = input("Ilu drzwiowy: ")
+        biegi = input("Jaka skrzynia biegow (automat/manual): ")
+
+        print("W podanej konfiguracji mamy takie samochody:")
+        W1.szukaj_auta(model, marka, rok, pasa, drzwi, biegi)
+
+elif lodka_czy_auto == 2: #chcemy lodke
     print("Jaka lodz?")
     print("1. zaglowa")
     print("2. motorowa")
-    co2 = int(input("Wybierz rodzaj lodzi i wpisz odpowiadajacy mu numer: "))
-    if co2 == 1: #lodka zaglowa
+    zag_czy_moto = int(input("Wybierz rodzaj lodzi i wpisz odpowiadajacy mu numer: "))
+    if zag_czy_moto == 1: #lodka zaglowa
         print("Chcesz zobaczyc dostepne lodki zaglowe, czy szukasz czegos konkretnego?")
         print("1. Pokaz dostepne")
         print("2. Szukam czegos konkretnego")
-        co3 = int(input("Twój wybor: "))
-        if co3 == 1:
-            lista =[]
-            for i in range(len(W1.ll)):
-                if "J" in W1.ll[i][0]:
-                    if W1.ll[i] not in lista:
-                        lista.append(W1.ll[i])
-            print(lista)
-        else:
-            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
-
-            model = input("Model lodzi: ")
+        wszystkie_czy_konkret = int(input("Twój wybor: "))
+        if wszystkie_czy_konkret == 1:
+            W1.wypisz_lodki("zagl")
+        elif wszystkie_czy_konkret == 2:
+            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")    
             marka = input("Marka lodzi: ")
+            model = input("Model lodzi: ")
             rok = input("Rok produkcji: ")
             pasa = input("Ile maksymalnie pasazerow: ")
             patent = input("Masz patent? (tak/nie): ")
             print("W podanej konfiguracji mamy takie samochody:")
             print(W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent))
 
-
-    else: #lodki motorowe
+    elif zag_czy_moto == 2: #lodki motorowe
         print("Chcesz zobaczyc dostepne lodki motorowe, czy szukasz czegos konkretnego?")
         print("1. Pokaz dostepne")
         print("2. Szukam czegos konkretnego")
-        co3 = int(input("Twój wybor: "))
-        if co3 == 1:
-            lista = []
-            for i in range(len(W1.ll)):
-                if "M" in W1.ll[i][0]:
-                    if W1.ll[i] not in lista:
-                        lista.append(W1.ll[i])
-            print(lista)
-        else:
-            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
-
-            model = input("Model lodzi: ")
+        wszystkie_czy_konkret = int(input("Twój wybor: "))
+        if wszystkie_czy_konkret == 1:
+            W1.wypisz_lodki("moto")
+        elif wszystkie_czy_konkret == 2:
+            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")            
             marka = input("Marka lodzi: ")
+            model = input("Model lodzi: ")
             rok = input("Rok produkcji: ")
             pasa = input("Ile maksymalnie pasazerow: ")
             patent = input("Masz patent? (tak/nie): ")
@@ -131,32 +139,8 @@ if co1 == 2: #chcemy lodke
             print(W1.szukaj_lodki_motor(model, marka, rok, pasa, patent))
 
 
-if co1 == 1: #chcemy samochod
-    twoj_prac = random.choice(W1.lp)
-    print("W wyborze pomoze ci: {}.".format(twoj_prac))
-
-    print("Chcesz zobaczyc dostepne samochody, czy szukasz czegos konkretnego?")
-    print("1. Pokaz dostepne samochody")
-    print("2. Szukam czegos konkretnego")
-    co3 = int(input("Twój wybor: "))
-    if co3 == 1:
-        print(W1.ile_samochodow())
-        print(W1.ls)
-    else:
-        print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
-
-        model = input("Model samochodu: ")
-        marka = input("Marka samochodu: ")
-        rok = input("Rok produkcji: ")
-        pasa = input("Ile maksymalnie pasazerow: ")
-        drzwi = input("Ilu drzwiowy: ")
-        biegi = input("Jaka skrzynia biegow (automat/manual): ")
-
-        print("W podanej konfiguracji mamy takie samochody:")
-        W1.szukaj_auto(model, marka, rok, pasa, drzwi, biegi)
-
-print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego numer identyfikacyjny, by zobaczyć szczegółowe informacje na jego temat")
-nr = input("Wpisz nr: ")
+print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego kod, by zobaczyć szczegółowe informacje na jego temat")
+nr = input("Wpisz kod: ")
 
 for i in W1.lj.keys():
     if i == nr:
