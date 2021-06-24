@@ -59,8 +59,8 @@ class Zagle(Lodki):
 
 
 class Motorowe(Lodki):
-    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, max_zanurzenia, typ_steru, patent, silnik):
-        Lodki.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, max_zanurzenia, typ_steru, patent)
+    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, silnik):
+        Lodki.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
         self.moc = silnik
 
     def max_osob(self):
@@ -199,9 +199,8 @@ class Wypozyczalnia():
         tab = []
 
         for i in range(len(self.ll)):
-            napis = self.ll[i][0]
-            if napis[1] =="J" or model_new == self.ll[i][1] or marka_new == self.ll[i][2] or rok_new == self.ll[i][3] or \
-                    pasa_new == self.ll[i][4] or patent == self.ll[i][4]:
+            if "J" in self.ll[i][0] and (model_new == self.ll[i][1] or marka_new == self.ll[i][2] or rok_new == self.ll[i][3] or \
+                    pasa_new == self.ll[i][4] or patent == self.ll[i][4]):
                 if self.ll[i] not in tab:
                     tab.append(self.ll[i])
 
@@ -213,9 +212,8 @@ class Wypozyczalnia():
         tab = []
 
         for i in range(len(self.ll)):
-            napis = self.ll[i][0]
-            if napis[1] =="M" or model_new == self.ll[i][1] or marka_new == self.ll[i][2] or rok_new == self.ll[i][3] or \
-                    pasa_new == self.ll[i][4] or patent == self.ll[i][4]:
+            if "M" in self.ll[i][0] and (model_new == self.ll[i][1] or marka_new == self.ll[i][2] or rok_new == self.ll[i][3] or \
+                    pasa_new == self.ll[i][4] or patent == self.ll[i][4]):
                 if self.ll[i] not in tab:
                     tab.append(self.ll[i])
 
@@ -300,12 +298,27 @@ lodka7 = Zagle("LJ3-AB11", "Twister", "26", 350, 2015, 6, 8, 36, "plaski", "tak"
 lodka8 = Zagle("LJ3-AB12", "Twister", "26", 370, 2019, 6, 8, 36, "plaski", "tak", 2)
 
 
-lodka9 = Motorowe("LM1-AB-11", "Laguna", "700", 440, 2014, 6, 55, "kolo sterowe", "tak", 15)
-lodka10 = Motorowe("LM1-AB-12", "Laguna", "700", 470, 2017, 6, 55, "kolo sterowe", "tak", 15)
-lodka11 = Motorowe("LM1-AB-13", "Laguna", "700", 520, 2020, 6, 50, "kolo sterowe", "tak", 20)
-lodka12 = Motorowe("LM2-AB-11", "Calipso", "750", 500, 2018, 5, 43, "kolo sterowe", "tak", 30)
-lodka13 = Motorowe("LM3-AB-11", "Solar", "23", 400, 2012, 4, 46, "kolo sterowe", "nie", 15)
-lodka14 = Motorowe("LM3-AB-12", "Solar", "23", 460, 2016, 4, 46, "kolo sterowe", "nie", 15)
+lodka9 = Motorowe("LM1-AB-11", "Laguna", "700", 440, 2014, 6, 8.5, 55, "kolo sterowe", "tak", 15)
+lodka10 = Motorowe("LM1-AB-12", "Laguna", "700", 470, 2017, 6, 8.5, 55, "kolo sterowe", "tak", 15)
+lodka11 = Motorowe("LM1-AB-13", "Laguna", "700", 520, 2020, 6, 9, 50, "kolo sterowe", "tak", 20)
+lodka12 = Motorowe("LM2-AB-11", "Calipso", "750", 500, 2018, 10, 5, 43, "kolo sterowe", "tak", 30)
+lodka13 = Motorowe("LM3-AB-11", "Solar", "23", 400, 2012, 4, 7.3, 46, "kolo sterowe", "nie", 15)
+lodka14 = Motorowe("LM3-AB-12", "Solar", "23", 460, 2016, 4, 7.3, 46, "kolo sterowe", "nie", 15)
+
+W1.dodaj_lodke(lodka1.info())
+W1.dodaj_lodke(lodka2.info())
+W1.dodaj_lodke(lodka3.info())
+W1.dodaj_lodke(lodka4.info())
+W1.dodaj_lodke(lodka5.info())
+W1.dodaj_lodke(lodka6.info())
+W1.dodaj_lodke(lodka7.info())
+W1.dodaj_lodke(lodka8.info())
+W1.dodaj_lodke(lodka9.info())
+W1.dodaj_lodke(lodka10.info())
+W1.dodaj_lodke(lodka11.info())
+W1.dodaj_lodke(lodka12.info())
+W1.dodaj_lodke(lodka13.info())
+W1.dodaj_lodke(lodka14.info())
 
 
 #'''
@@ -328,7 +341,12 @@ if co1 == 2: #chcemy lodke
         print("2. Szukam czegos konkretnego")
         co3 = int(input("Twój wybor: "))
         if co3 == 1:
-            print(W1.ll)
+            lista =[]
+            for i in range(len(W1.ll)):
+                if "J" in W1.ll[i][0]:
+                    if W1.ll[i] not in lista:
+                        lista.append(W1.ll[i])
+            print(lista)
         else:
             print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
 
@@ -336,18 +354,22 @@ if co1 == 2: #chcemy lodke
             marka = input("Marka lodzi: ")
             rok = input("Rok produkcji: ")
             pasa = input("Ile maksymalnie pasazerow: ")
-            koje = input("Ile koi: ")
             patent = input("Masz patent? (tak/nie): ")
             print("W podanej konfiguracji mamy takie samochody:")
             print(W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent))
 
-    else:
+    else: #lodki motorowe
         print("Chcesz zobaczyc dostepne lodki motorowe, czy szukasz czegos konkretnego?")
         print("1. Pokaz dostepne")
         print("2. Szukam czegos konkretnego")
         co3 = int(input("Twój wybor: "))
         if co3 == 1:
-            print(W1.ll)
+            lista = []
+            for i in range(len(W1.ll)):
+                if "M" in W1.ll[i][0]:
+                    if W1.ll[i] not in lista:
+                        lista.append(W1.ll[i])
+            print(lista)
         else:
             print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
 
@@ -355,7 +377,6 @@ if co1 == 2: #chcemy lodke
             marka = input("Marka lodzi: ")
             rok = input("Rok produkcji: ")
             pasa = input("Ile maksymalnie pasazerow: ")
-            koje = input("Ile koi: ")
             patent = input("Masz patent? (tak/nie): ")
             print("W podanej konfiguracji mamy takie samochody:")
             print(W1.szukaj_lodki_motor(model, marka, rok, pasa, patent))
@@ -385,6 +406,8 @@ if co1 == 1: #chcemy samochod
         print("W podanej konfiguracji mamy takie samochody:")
         print(W1.szukaj_auto(model, marka, rok, pasa, drzwi, biegi))
 
+print("Jeśli ktoras jednostka cię zainteresowała podaj jej numer identyfikacyjny, wtedy odslonia sie wszistkie dane")
+nr = input("nr ")
 
 
 #'''
