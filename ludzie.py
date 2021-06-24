@@ -61,7 +61,7 @@ class staly_klient(klient):
 '''
 
 
-class Pracownicy():
+class Pracownik():
     def __init__(self, nr_pracownika, imie, nazwisko):
         self.nr = nr_pracownika
         self.imie = imie

@@ -7,7 +7,7 @@ class Jednostka():
         self.rok = rok_produkcji
         self.pasazerowie = liczba_pasazerow
 
-class Samochody(Jednostka):
+class Samochod(Jednostka):
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow):
         Jednostka.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow)
         self.drzwi = liczba_drzwi
@@ -27,7 +27,7 @@ class Samochody(Jednostka):
         return "Maksymalna liczba osob w pojezdzie to: {}".format(self.pasazerowie)
 
 
-class Lodki(Jednostka):
+class Lodka(Jednostka):
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent):
         Jednostka.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow)
         self.dlu = dlugosc
@@ -45,9 +45,9 @@ class Lodki(Jednostka):
             return True
 
 
-class Zagle(Lodki):
+class Zaglowka(Lodka):
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, liczba_koi):
-        Lodki.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
+        Lodka.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
         self.koje = liczba_koi
 
     def max_osob(self):
@@ -59,9 +59,9 @@ class Zagle(Lodki):
                                                                                                                  self.koje, self.dlu, self.max_zanu, self.ster, self.patent)
 
 
-class Motorowe(Lodki):
+class Motorowka(Lodka):
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, silnik):
-        Lodki.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
+        Lodka.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
         self.moc = silnik
 
     def max_osob(self):

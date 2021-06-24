@@ -30,6 +30,9 @@ class Wypozyczalnia():
     def pracow(self):
         return self.lp
 
+    def dodaj_pracownika(self, pracownik):
+        self.lp.append(pracownik)
+
     def dodaj_auto(self, auto):
         self.ls.append(auto)
 
@@ -37,18 +40,18 @@ class Wypozyczalnia():
         self.ll.append(lodka)
 
     def szukaj_auto(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new):
-        lista = copy.copy(self.ls)
         tab = []
-
-        for i in range(len(self.ls)):
-            if model_new == self.ls[i][1] or marka_new == self.ls[i][2] or rok_new == self.ls[i][3] or \
-                    pasazerowie_new == self.ls[i][4] or drzwi_new == self.ls[i][5] or skrzynia_new == self.ls[i][6]:
-                if self.ls[i] not in tab:
-                    tab.append(self.ls[i])
+        for i in self.ls:
+            if model_new == i.model or marka_new == i.marka or rok_new == i.rok or \
+                    pasazerowie_new == i.pasazerowie or drzwi_new == i.drzwi or skrzynia_new == i.skrzynia:
+                if i not in tab:
+                    tab.append(i)
 
         if len(tab) == 0:
-            return "Nie ma takich samochodow :("
-        return tab
+            print("Nie ma takich samochodow :(")
+        else:
+            for i in tab:
+                print(i.info())
 
 
     def szukaj_lodki_zagle(self, model_new, marka_new, rok_new, pasa_new, patent):
