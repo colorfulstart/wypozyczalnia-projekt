@@ -19,8 +19,9 @@ class Samochody(Jednostka):
         self.skrzynia = skrzynia_biegow
 
     def wazne_info(self):
-        return "Samochod: {} {} z {} (skrzynia biegow {}), ma miejsca na {} i jest {} drzwiowy. Moc jego silnika to {}, a spalanie ma na poziomie {}l/100km".format(self.model, self.marka, self.rok,
-                                                                                                          self.skrzynia, self.pasazerowie,self.drzwi, self.moc, self.spalanie)
+        return "Samochod: {} {} z {} (skrzynia biegow {}), ma miejsca na {} i jest {} drzwiowy. Moc jego silnika to {}KM, " \
+               "a spalanie ma na poziomie {}l/100km".format(self.model, self.marka, self.rok, self.skrzynia, self.pasazerowie,
+                                                            self.drzwi, self.moc, self.spalanie)
 
     def info(self):
         return [self.nazwa, self.model, self.marka, self.rok, self.pasazerowie, self.drzwi, self.skrzynia]
@@ -58,6 +59,11 @@ class Zagle(Lodki):
     def max_osob(self):
         return "Komfortowa liczba osob to {}, a maksywalna to {}".format(self.pasazerowie, self.pasazerowie+2)
 
+    def wazne_info(self):
+        return "Lódź zaglowa: {} {} z roku {} ma miejsca na {} przy czym {} koi. Długość całkowita to {}m, " \
+               "maksymalne zanurzenie {}cm, mamy tutaj {}. Czy potrzeba mieć patent by wypożyczyć łódź? {}".format(self.model, self.marka, self.rok, self.pasazerowie,
+                                                                                                                 self.koje, self.dlu, self.max_zanu, self.ster, self.patent)
+
 
 class Motorowe(Lodki):
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, silnik):
@@ -67,6 +73,11 @@ class Motorowe(Lodki):
     def max_osob(self):
         return "Maksymalna liczba osob to: {}".format(self.pasazerowie)
 
+    def wazne_info(self):
+        return "Lódź motorowa: {} {} z roku {} ma miejsca na {}. Długość całkowita to {}m, " \
+               "maksymalne zanurzenie {}cm, mamy tutaj {} i silnik o mocy {}KM. Czy potrzeba mieć patent by wypożyczyć łódź? {}".format(self.model, self.marka, self.rok,
+                                                                                                                                    self.pasazerowie, self.dlu, self.max_zanu,
+                                                                                                                                    self.ster, self.moc,self.patent)
 
 
 
@@ -292,14 +303,14 @@ W1.dodaj_auto(auto5.info())
 W1.dodaj_auto(auto6.info())
 
 
-lodka1 = Zagle("LJ1-AB11", "Antila", "27", 360, 2012, 8, 8.4, 38, "plaski", "tak", 3)
-lodka2 = Zagle("LJ1-AB12", "Antila", "27", 360, 2012, 8, 8.4, 37, "plaski", "tak", 3)
-lodka3 = Zagle("LJ1-AB13", "Antila", "27", 390, 2017, 8, 8.4, 38, "plaski", "tak", 3)
-lodka4 = Zagle("LJ1-AB14", "Antila", "27", 450, 2020, 8, 8.4, 37, "plaski", "tak", 3)
+lodka1 = Zagle("LJ1-AB11", "Antila", "27", 360, 2012, 8, 8.4, 38, "plaski ster", "tak", 3)
+lodka2 = Zagle("LJ1-AB12", "Antila", "27", 360, 2012, 8, 8.4, 37, "plaski ster", "tak", 3)
+lodka3 = Zagle("LJ1-AB13", "Antila", "27", 390, 2017, 8, 8.4, 38, "plaski ster", "tak", 3)
+lodka4 = Zagle("LJ1-AB14", "Antila", "27", 450, 2020, 8, 8.4, 37, "plaski ster", "tak", 3)
 lodka5 = Zagle("LJ2-AB11", "Antila", "30", 410, 2015, 8, 11, 42, "kolo sterowe", "tak", 3)
 lodka6 = Zagle("LJ2-AB12", "Antila", "30", 500, 2020, 8, 11, 44, "kolo sterowe", "tak", 3)
-lodka7 = Zagle("LJ3-AB11", "Twister", "26", 350, 2015, 6, 8, 36, "plaski", "tak", 2)
-lodka8 = Zagle("LJ3-AB12", "Twister", "26", 370, 2019, 6, 8, 36, "plaski", "tak", 2)
+lodka7 = Zagle("LJ3-AB11", "Twister", "26", 350, 2015, 6, 8, 36, "plaski ster", "tak", 2)
+lodka8 = Zagle("LJ3-AB12", "Twister", "26", 370, 2019, 6, 8, 36, "plaski ster", "tak", 2)
 
 lodka9 = Motorowe("LM1-AB-11", "Laguna", "700", 440, 2014, 6, 8.5, 55, "kolo sterowe", "tak", 15)
 lodka10 = Motorowe("LM1-AB-12", "Laguna", "700", 470, 2017, 6, 8.5, 55, "kolo sterowe", "tak", 15)
@@ -387,12 +398,6 @@ if co1 == 2: #chcemy lodke
             print("W podanej konfiguracji mamy takie samochody:")
             print(W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent))
 
-        print("Jeśli ktoras lodka cię zainteresowała podaj jej numer identyfikacyjny, wtedy odslonia sie wszystkie dane")
-        nr = input("Wpisz nr: ")
-        for i in range(len(W1.ll)):
-            if nr == W1.ll[i][0]:
-                print("bleble")
-
 
     else: #lodki motorowe
         print("Chcesz zobaczyc dostepne lodki motorowe, czy szukasz czegos konkretnego?")
@@ -442,12 +447,12 @@ if co1 == 1: #chcemy samochod
         print("W podanej konfiguracji mamy takie samochody:")
         print(W1.szukaj_auto(model, marka, rok, pasa, drzwi, biegi))
 
-    print("Jeśli któryś z samochodów Ci sie spodobał podaj jego numer identyfikacyjny, by zobaczyć szczegółowe informacje na jego temat")
-    nr = input("Wpisz nr: ")
+print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego numer identyfikacyjny, by zobaczyć szczegółowe informacje na jego temat")
+nr = input("Wpisz nr: ")
 
-    for i in W1.lj.keys():
-        if i == nr:
-            print(W1.lj[i].wazne_info())
+for i in W1.lj.keys():
+    if i == nr:
+        print(W1.lj[i].wazne_info())
 
 
 
