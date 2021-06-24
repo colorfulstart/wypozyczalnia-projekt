@@ -2,7 +2,7 @@ from jednostki import *
 from ludzie import *
 from wypozyczalnia import *
 
-# TESTOWANIE
+
 W1 = Wypozyczalnia("1", "Wrocław")
 #print(w1.gdzie())
 #print(w1.ile_lodek())
