@@ -1,6 +1,8 @@
 import random
 import copy
 
+
+#elo elo
 class Wypozyczalnia():
     def __init__(self, nr_wypozyczalni, lokalizacja):
         self.nr = nr_wypozyczalni
