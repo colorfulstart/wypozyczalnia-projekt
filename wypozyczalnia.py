@@ -168,20 +168,20 @@ class Wypozyczalnia():
         self.lsk = [] #lista stalych klientow
         self.rez = [] #lista rezerwacji
 
-    def gdzie(self):
-        return "Wypozyczalnia nr {} znajduje sie w {}".format(self.nr, self.lok)
+    def wypisz_lokalizacje(self):
+        print(f"Wypozyczalnia nr {self.nr} znajduje sie w {self.lok}")
 
     def ile_samochodow(self):
-        return "W Wypozyczalni nr {} mamy dostępne {} samochody".format(self.nr, len(self.ls))
+        print(f"W Wypozyczalni nr {self.nr} mamy dostępne {len(self.ls)} samochody")
 
     def ile_lodek(self):
-        return "W Wypozyczalni nr {} mamy dostępne {} lodek".format(self.nr, len(self.ll))
+        print(f"W Wypozyczalni nr {self.nr} mamy dostępne {self.ll} lodek")
 
     def ile_pracownikow(self):
-        return "W Wypozyczalni nr {} pracuja {} osob".format(self.nr, len(self.lp))
+        print(f"W Wypozyczalni nr {self.nr} pracuja {self.lp} osob")
 
     def ile_stalych_klientow(self):
-        return "Wypozyczalnia nr {} ma {} stałych klientow".format(self.nr, len(self.lsk))
+        print(f"Wypozyczalnia nr {self.nr} ma {len(self.lsk)} stałych klientow")
 
     def pracow(self):
         return self.lp
