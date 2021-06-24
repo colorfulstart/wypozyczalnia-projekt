@@ -1,6 +1,7 @@
 from jednostki import *
 from ludzie import *
 from wypozyczalnia import *
+from datetime import date, timedelta
 
 # TESTOWANIE
 W1 = Wypozyczalnia("1", "Wrocław")
@@ -19,7 +20,6 @@ W1.dodaj_pracownika(p1)
 W1.dodaj_pracownika(p2)
 W1.dodaj_pracownika(p3)
 W1.dodaj_pracownika(p4)
-print(W1.ile_pracownikow())
 
 
 #cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow
@@ -68,8 +68,13 @@ W1.dodaj_lodke(lodka12)
 W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
-print(lodka8.info())
-print(lodka9.info())
+lodka13.czy_wolne(date.today(), date.fromisoformat('2021-12-04'))
+lodka13.kal.najblizszy_rok[date.fromisoformat('2021-12-02')] = "zajete"
+lodka13.czy_wolne(date.today(), date.fromisoformat('2021-12-04'))
+
+kal = Kalendarz()
+
+# print(kal.najblizszy_rok)
 
 print("Witaj! Jak możemy Ci pomoc?")
 print("1. Chce zarezerwować samochód.")

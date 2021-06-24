@@ -1,5 +1,7 @@
 import random
 import copy
+from datetime import date, timedelta
+
 
 class Wypozyczalnia():
     def __init__(self, nr_wypozyczalni, lokalizacja):
@@ -133,8 +135,26 @@ class Rezerwacja():
 
 class Kalendarz():
     def __init__(self):
-        self.kal = []
+        self.najblizszy_rok = {}
+        self.dzisiaj = date.today()
+        for i in range(365):
+            dzien = self.dzisiaj + timedelta(days=i)
+            self.najblizszy_rok[dzien] = "wolne"
+
+    def czy_wolne(self, pocz, kon):
+        i = 0
+        rob = 1
+        #print(pocz, kon)
+        while pocz <= kon:
+            if self.najblizszy_rok[pocz] != "wolne":
+                rob = 0
+            pocz = pocz + timedelta(days=1)
+        
+        if rob == 0:
+            print("Niestety w tym terminie jednostka jest zajeta.")
+        elif rob == 1:
+            print("Jednostka wolna!")
+        
 
 
 
-    #def czy_dostepne(self, ):

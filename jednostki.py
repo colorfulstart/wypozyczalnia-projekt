@@ -1,3 +1,5 @@
+from wypozyczalnia import Kalendarz
+
 class Jednostka():
     def __init__(self, nazwa,  marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow):
         self.nazwa = nazwa
@@ -6,6 +8,10 @@ class Jednostka():
         self.cena = cena_za_dobe
         self.rok = rok_produkcji
         self.pasazerowie = liczba_pasazerow
+        self.kal = Kalendarz()
+    def czy_wolne(self, pocz, kon):
+        self.kal.czy_wolne(pocz, kon)
+    
 
 class Samochod(Jednostka):
     def __init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow):
