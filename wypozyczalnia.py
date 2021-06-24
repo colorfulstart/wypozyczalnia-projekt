@@ -35,11 +35,13 @@ class Wypozyczalnia():
 
     def dodaj_auto(self, auto):
         self.ls.append(auto)
+        self.lj[auto.nazwa] = auto
 
     def dodaj_lodke(self,lodka):
         self.ll.append(lodka)
+        self.lj[lodka.nazwa] = lodka
 
-    def szukaj_auto(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new):
+    def szukaj_auto(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new): #done
         tab = []
         for i in self.ls:
             if model_new == i.model or marka_new == i.marka or rok_new == i.rok or \
@@ -54,34 +56,34 @@ class Wypozyczalnia():
                 print(i.info())
 
 
-    def szukaj_lodki_zagle(self, model_new, marka_new, rok_new, pasa_new, patent):
+    def szukaj_lodki_zagle(self, model_new, marka_new, rok_new, pasa_new, patent): #done
         tab = []
-
-        for i in range(len(self.ll)):
-            if "J" in self.ll[i][0] and (model_new == self.ll[i][1] or marka_new == self.ll[i][2] or rok_new == self.ll[i][3] or \
-                    pasa_new == self.ll[i][4] or patent == self.ll[i][4]):
-                if self.ll[i] not in tab:
-                    tab.append(self.ll[i])
+        for i in self.ll:
+            if "J" in i.nazwa and (model_new == i.model or marka_new == i.marka or rok_new == i.rok or \
+                    pasa_new == i.pasazerowie or patent == i.patent):
+                if i not in tab:
+                    tab.append(i)
 
         if len(tab) == 0:
-            return "Nie ma takich lodek :("
-        return tab
+            print("Nie ma takich lodek :(")
+        else:
+            for i in tab:
+                print(i.info())
 
-    def szukaj_lodki_motor(self, model_new, marka_new, rok_new, pasa_new, patent):
+    def szukaj_lodki_motor(self, model_new, marka_new, rok_new, pasa_new, patent): #done
         tab = []
-
-        for i in range(len(self.ll)):
-            if "M" in self.ll[i][0] and (model_new == self.ll[i][1] or marka_new == self.ll[i][2] or rok_new == self.ll[i][3] or \
-                    pasa_new == self.ll[i][4] or patent == self.ll[i][4]):
-                if self.ll[i] not in tab:
-                    tab.append(self.ll[i])
+        for i in self.ll:
+            if "M" in i.nazwa and (model_new == i.model or marka_new == i.marka or rok_new == i.rok or \
+                    pasa_new == i.pasazerowie or patent == i.patent):
+                if i not in tab:
+                    tab.append(i)
 
         if len(tab) == 0:
-            return "Nie ma takich lodek :("
-        return tab
+            print("Nie ma takich lodek :(")
+        else:
+            for i in tab:
+                print(i.info())
 
-    def dodaj_jednostke(self, nr, jednostka):
-        self.lj[nr] = jednostka
 
 
 

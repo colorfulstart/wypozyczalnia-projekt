@@ -38,7 +38,6 @@ W1.dodaj_auto(auto4)
 W1.dodaj_auto(auto5)
 W1.dodaj_auto(auto6)
 
-
 lodka1 = Zaglowka("LJ1-AB11", "Antila", "27", 360, 2012, 8, 8.4, 38, "plaski ster", "tak", 3)
 lodka2 = Zaglowka("LJ1-AB12", "Antila", "27", 360, 2012, 8, 8.4, 37, "plaski ster", "tak", 3)
 lodka3 = Zaglowka("LJ1-AB13", "Antila", "27", 390, 2017, 8, 8.4, 38, "plaski ster", "tak", 3)
@@ -71,33 +70,6 @@ W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
 
-W1.dodaj_jednostke("S1-AB11", auto1)
-W1.dodaj_jednostke("S2-AB11", auto2)
-W1.dodaj_jednostke("S3-AB11", auto3)
-W1.dodaj_jednostke("S3-AB12", auto4)
-W1.dodaj_jednostke("S4-AB11", auto5)
-W1.dodaj_jednostke("S5-AB11", auto6)
-
-W1.dodaj_jednostke("LJ1-AB11", lodka1)
-W1.dodaj_jednostke("LJ1-AB12", lodka2)
-W1.dodaj_jednostke("LJ1-AB13", lodka3)
-W1.dodaj_jednostke("LJ1-AB14", lodka4)
-W1.dodaj_jednostke("LJ2-AB11", lodka5)
-W1.dodaj_jednostke("LJ2-AB12", lodka6)
-W1.dodaj_jednostke("LJ3-AB11", lodka7)
-W1.dodaj_jednostke("LJ3-AB12", lodka8)
-
-W1.dodaj_jednostke("LM1-AB-11", lodka9)
-W1.dodaj_jednostke("LM1-AB-12", lodka10)
-W1.dodaj_jednostke("LM1-AB-13", lodka11)
-W1.dodaj_jednostke("LM2-AB-11", lodka12)
-W1.dodaj_jednostke("LM3-AB-11", lodka13)
-W1.dodaj_jednostke("LM3-AB-12", lodka14)
-
-
-#print(W1.lj)
-
-#'''
 print("Witaj! Jak możemy Ci pomoc?")
 print("1. Chce zarezerwować samochód.")
 print("2. Chce zarezerwować lodke.")
