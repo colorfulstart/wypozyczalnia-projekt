@@ -181,7 +181,7 @@ if co1 == 1: #chcemy samochod
         biegi = input("Jaka skrzynia biegow (automat/manual): ")
 
         print("W podanej konfiguracji mamy takie samochody:")
-        print(W1.szukaj_auto(model, marka, rok, pasa, drzwi, biegi))
+        W1.szukaj_auto(model, marka, rok, pasa, drzwi, biegi)
 
 print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego numer identyfikacyjny, by zobaczyć szczegółowe informacje na jego temat")
 nr = input("Wpisz nr: ")
