@@ -1,6 +1,7 @@
 import random
 import copy
 
+<<<<<<< Updated upstream
 class Jednostka():
     def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow):
         self.nazwa = nazwa
@@ -156,6 +157,8 @@ class Pracownicy():
 
 
 
+=======
+>>>>>>> Stashed changes
 
 class Wypozyczalnia():
     def __init__(self, nr_wypozyczalni, lokalizacja):
@@ -258,7 +261,7 @@ class Rezerwacja():
     #def dodaj_rezerwacje(self):
 
 
-class kalendarz():
+class Kalendarz():
     def __init__(self):
         self.kal = []
 
@@ -267,6 +270,7 @@ class kalendarz():
     #def czy_dostepne(self, ):
 
 
+<<<<<<< Updated upstream
 W1 = Wypozyczalnia("1", "Wrocław")
 #print(w1.gdzie())
 #print(w1.ile_lodek())
@@ -453,6 +457,8 @@ nr = input("Wpisz nr: ")
 for i in W1.lj.keys():
     if i == nr:
         print(W1.lj[i].wazne_info())
+=======
+>>>>>>> Stashed changes
 
 
 
