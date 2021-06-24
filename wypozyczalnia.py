@@ -1,8 +1,8 @@
 import random
 import copy
+from jednostki import *
+from ludzie import *
 
-
-#elo elo
 class Wypozyczalnia():
     def __init__(self, nr_wypozyczalni, lokalizacja):
         self.nr = nr_wypozyczalni
@@ -39,7 +39,7 @@ class Wypozyczalnia():
         self.ll.append(lodka)
 
     def szukaj_auto(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new):
-        lista = copy.copy(self.ls)
+        #lista = copy.copy(self.ls)
         tab = []
 
         for i in range(len(self.ls)):

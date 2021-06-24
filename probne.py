@@ -9,3 +9,5 @@ mylist = ["apple", "banana", "cherry"]
 
 print(random.choice(mylist))
 
+
+print("REDSCAv {}".format(mylist))

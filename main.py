@@ -1,6 +1,7 @@
 from jednostki import *
 from ludzie import *
 from wypozyczalnia import *
+import random
 
 # TESTOWANIE
 W1 = Wypozyczalnia("1", "Wrocław")
@@ -19,7 +20,7 @@ W1.lp.append(p1.dane_pracownika())
 W1.lp.append(p2.dane_pracownika())
 W1.lp.append(p3.dane_pracownika())
 W1.lp.append(p4.dane_pracownika())
-print(W1.ile_pracownikow())
+#print(W1.ile_pracownikow())
 #print(W1.lp)
 #print(P1.dane_pracownika())
 
@@ -95,9 +96,10 @@ W1.dodaj_jednostke("LM3-AB-11", lodka13)
 W1.dodaj_jednostke("LM3-AB-12", lodka14)
 
 
-#print(W1.lj)
+print(W1.lj)
+print(W1.ls)
 
-#'''
+'''
 print("Witaj! Jak możemy Ci pomoc?")
 print("1. Chce zarezerwować samochód.")
 print("2. Chce zarezerwować lodke.")
@@ -189,3 +191,7 @@ nr = input("Wpisz nr: ")
 for i in W1.lj.keys():
     if i == nr:
         print(W1.lj[i].wazne_info())
+if nr not in W1.lj.keys():
+    print("Podałeś niepoprawny numer")
+
+'''
