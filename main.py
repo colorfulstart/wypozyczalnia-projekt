@@ -63,8 +63,7 @@ W1.dodaj_lodke(lodka12)
 W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
-if __name__ == "__main__":
-    unittest.main()
+
 
 print("Witaj! Jak możemy Ci pomoc?")
 
