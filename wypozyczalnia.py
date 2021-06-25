@@ -171,7 +171,14 @@ class Kalendarz():
                 print()
             pocz = pocz + timedelta(days=1)
         print()
-    
+
+    def rezerwacja(self, pocz, kon, klient):
+        if self.czy_wolne(pocz,kon) == True:
+            while pocz <= kon:
+                self.najblizszy_rok[pocz] = klient
+                pocz = pocz + timedelta(days=1)
+            return True
+        return False
     
         
 

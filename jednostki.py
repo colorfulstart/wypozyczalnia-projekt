@@ -1,4 +1,5 @@
 from wypozyczalnia import Kalendarz
+from datetime import date
 
 class Jednostka():
     def __init__(self, nazwa,  marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow):
@@ -10,12 +11,18 @@ class Jednostka():
         self.pasazerowie = liczba_pasazerow
         self.kal = Kalendarz()
     def czy_wolne(self, pocz, kon):
-        if self.kal.czy_wolne(pocz, kon) == True:
+        if self.kal.czy_wolne(date.fromisoformat(pocz), date.fromisoformat(kon)) == True:
             print("Jednostka wolna!")
         else:
             print("Niestety w tym terminie jednostka jest zajeta.")
     def wypisz_wolne(self, rok, miesiac):
         self.kal.wypisz_wolne(int(rok), int(miesiac))
+
+    def rezerwacja(self, pocz, kon, klient):
+        if self.kal.rezerwacja(date.fromisoformat(pocz), date.fromisoformat(kon), klient) == True:
+            print(f"Brawo! Udało Ci się zarezerwować jednostkę w terminie od {pocz} do {kon}.")
+        else:
+            print(f"Niestety jednostka w terminie od {pocz} do {kon} jest zajęta.")
             
     
 
