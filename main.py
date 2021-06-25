@@ -125,7 +125,9 @@ while True:
                 rok = input("Rok produkcji: ")
                 pasa = input("Ile maksymalnie pasazerow: ")
                 patent = input("Masz patent? (tak/nie): ")
+
                 print("W podanej konfiguracji mamy takie samochody:") #tutaj zmiana
+
                 W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent)
 
         elif zag_czy_moto == 2: #lodki motorowe
@@ -145,18 +147,21 @@ while True:
                 print("W podanej konfiguracji mamy takie samochody:")
                 W1.szukaj_lodki_motor(model, marka, rok, pasa, patent)
 
-    
+    x = 1
     while True:
         print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego kod, by zobaczyć szczegółowe informacje na jego temat.")
         print("Jeśli chcesz wrócić do początku wpisz 0.")
         nr = input("Wpisz kod: ")
         if nr == '0':
+            x = 0
             break
         wybrana_jedn = W1.lj[nr]
         if wybrana_jedn is None:
             print("Zły kod!!!")
             continue
         break
+    if x == 0:
+        continue
     print("Podaj swoje imie i nazwisko aby kontynuować.")
     imie = input("Imie: ")
     nazw = input("Nazwisko: ")
