@@ -11,7 +11,7 @@ class Wypozyczalnia():
         self.ls = [] #lista samochodów
         self.ll = [] #lista lodek
         self.lp = [] #lista pracownikow
-        self.lk = [] #lista stalych klientow
+        self.lk = [] #lista klientow
         self.rez = [] #lista rezerwacji
 
     def wypisywanie_list(self, tab, auto_czy_lodz):
@@ -54,11 +54,6 @@ class Wypozyczalnia():
     def ile_pracownikow(self):
         print(f"W Wypozyczalni nr {self.nr} pracuja {self.lp} osob")
 
-    def ile_stalych_klientow(self):
-        print(f"Wypozyczalnia nr {self.nr} ma {len(self.lsk)} stałych klientow")
-
-    def pracow(self):
-        return self.lp
 
     def dodaj_pracownika(self, pracownik):
         self.lp.append(pracownik)
@@ -145,7 +140,7 @@ class Kalendarz():
         n = monthrange(rok, miesiac)[1]
         print(month_name[miesiac])
         for i in range(n):
-            if self.najblizszy_rok[pocz] == "wolne": #strasznie nie pythonowo tylko w C ale trudno xD
+            if self.najblizszy_rok[pocz] == "wolne":
                 if i < 9:
                     x=" "
                 else:

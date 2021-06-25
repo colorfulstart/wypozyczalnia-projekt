@@ -10,11 +10,13 @@ class Jednostka():
         self.rok = rok_produkcji
         self.pasazerowie = liczba_pasazerow
         self.kal = Kalendarz()
+
     def czy_wolne(self, pocz, kon):
         if self.kal.czy_wolne(date.fromisoformat(pocz), date.fromisoformat(kon)) == True:
             print("Jednostka wolna!")
         else:
             print("Niestety w tym terminie jednostka jest zajeta.")
+
     def wypisz_wolne(self, rok, miesiac):
         self.kal.wypisz_wolne(int(rok), int(miesiac))
 

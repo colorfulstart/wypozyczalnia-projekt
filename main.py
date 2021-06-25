@@ -2,6 +2,7 @@ from jednostki import *
 from ludzie import *
 from wypozyczalnia import *
 import sys
+import random
 
 # TESTOWANIE
 W1 = Wypozyczalnia("1", "Wrocław")
@@ -104,6 +105,7 @@ while True:
 
             print("W podanej konfiguracji mamy takie samochody:")
             W1.szukaj_auta(model, marka, rok, pasa, drzwi, biegi)
+
     elif lodka_czy_auto == 2: #chcemy lodke
         print("Jaka lodz?")
         print("1. zaglowa")
@@ -123,8 +125,8 @@ while True:
                 rok = input("Rok produkcji: ")
                 pasa = input("Ile maksymalnie pasazerow: ")
                 patent = input("Masz patent? (tak/nie): ")
-                print("W podanej konfiguracji mamy takie samochody:")
-                print(W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent))
+                print("W podanej konfiguracji mamy takie samochody:") #tutaj zmiana
+                W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent)
 
         elif zag_czy_moto == 2: #lodki motorowe
             print("Chcesz zobaczyc dostepne lodki motorowe, czy szukasz czegos konkretnego?")
@@ -141,7 +143,7 @@ while True:
                 pasa = input("Ile maksymalnie pasazerow: ")
                 patent = input("Masz patent? (tak/nie): ")
                 print("W podanej konfiguracji mamy takie samochody:")
-                print(W1.szukaj_lodki_motor(model, marka, rok, pasa, patent))
+                W1.szukaj_lodki_motor(model, marka, rok, pasa, patent)
 
     
     while True:
@@ -169,7 +171,7 @@ while True:
 
     while True:
         print("Co chcesz zrobić?")
-        print("1. Sprawdzić czy jednostka jest wolna.")
+        print("1. Sprawdzić czy jednostka jest wolna w danym terminie.")
         print("2. Pokazać dostępność na dany miesiąc.")
         print("3. Sprawdzić swoją kwotę wynajmu.")
         print("4. Dokonać rezerwacji.")
