@@ -6,13 +6,7 @@ import random
 
 # TESTOWANIE
 W1 = Wypozyczalnia("1", "Wrocław")
-#print(w1.gdzie())
-#print(w1.ile_lodek())
 
-#jed1 = jednostka("S1-AB12", "opel", "insygnia", 400, 2003, 5)
-
-
-#dodani Pracownik
 p1 = Pracownik(1, "Tomasz", "Janusz")
 p2 = Pracownik(2, "Mateusz", "Rabiega")
 p3 = Pracownik(3, "Kamil", "Pajak")
@@ -23,7 +17,6 @@ W1.dodaj_pracownika(p3)
 W1.dodaj_pracownika(p4)
 
 
-#cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow
 auto1 = Samochod("S1-AB11", "Volkswagen", "Touran", 500, 2014, 7, 5, 140, 5, "manual")
 auto2 = Samochod("S2-AB11", "Suziki", "Ignis", 350, 2009, 5, 5, 90, 4.5, "manual")
 auto3 = Samochod("S3-AB11", "Toyota", "Aygo", 400, 2016, 5, 5, 110, 6, "manual")
@@ -47,12 +40,12 @@ lodka6 = Zaglowka("LJ2-AB12", "Antila", "30", 500, 2020, 8, 11, 44, "kolo sterow
 lodka7 = Zaglowka("LJ3-AB11", "Twister", "26", 350, 2015, 6, 8, 36, "plaski ster", "tak", 2)
 lodka8 = Zaglowka("LJ3-AB12", "Twister", "26", 370, 2019, 6, 8, 36, "plaski ster", "tak", 2)
 
-lodka9 = Motorowka("LM1-AB-11", "Laguna", "700", 440, 2014, 6, 8.5, 55, "kolo sterowe", "tak", 15)
-lodka10 = Motorowka("LM1-AB-12", "Laguna", "700", 470, 2017, 6, 8.5, 55, "kolo sterowe", "tak", 15)
-lodka11 = Motorowka("LM1-AB-13", "Laguna", "700", 520, 2020, 6, 9, 50, "kolo sterowe", "tak", 20)
-lodka12 = Motorowka("LM2-AB-11", "Calipso", "750", 500, 2018, 10, 5, 43, "kolo sterowe", "tak", 30)
-lodka13 = Motorowka("LM3-AB-11", "Solar", "23", 400, 2012, 4, 7.3, 46, "kolo sterowe", "nie", 15)
-lodka14 = Motorowka("LM3-AB-12", "Solar", "23", 460, 2016, 4, 7.3, 46, "kolo sterowe", "nie", 15)
+lodka9 = Motorowka("LM1-AB11", "Laguna", "700", 440, 2014, 6, 8.5, 55, "kolo sterowe", "tak", 15)
+lodka10 = Motorowka("LM1-AB12", "Laguna", "700", 470, 2017, 6, 8.5, 55, "kolo sterowe", "tak", 15)
+lodka11 = Motorowka("LM1-AB13", "Laguna", "700", 520, 2020, 6, 9, 50, "kolo sterowe", "tak", 20)
+lodka12 = Motorowka("LM2-AB11", "Calipso", "750", 500, 2018, 10, 5, 43, "kolo sterowe", "tak", 30)
+lodka13 = Motorowka("LM3-AB11", "Solar", "23", 400, 2012, 4, 7.3, 46, "kolo sterowe", "nie", 15)
+lodka14 = Motorowka("LM3-AB12", "Solar", "23", 460, 2016, 4, 7.3, 46, "kolo sterowe", "nie", 15)
 
 W1.dodaj_lodke(lodka1)
 W1.dodaj_lodke(lodka2)
@@ -70,8 +63,6 @@ W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
 
-
-# print(kal.najblizszy_rok)
 print("Witaj! Jak możemy Ci pomoc?")
 
 while True:
@@ -150,8 +141,10 @@ while True:
     x = 1
     while True:
         print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego kod, by zobaczyć szczegółowe informacje na jego temat.")
+
         print("Jeśli chcesz wrócić do początku wpisz 0.")
         nr = input("Wpisz kod: ")
+        print(W1.lj[nr].wazne_info())
         if nr == '0':
             x = 0
             break

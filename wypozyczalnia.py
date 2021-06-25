@@ -75,7 +75,7 @@ class Wypozyczalnia():
         self.ll.append(lodka)
         self.lj[lodka.nazwa] = lodka
 
-    def szukaj_auta(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new): #done
+    def szukaj_auta(self, model_new, marka_new, rok_new, pasazerowie_new, drzwi_new, skrzynia_new):
         tab = []
         for i in self.ls:
             if model_new == i.model or marka_new == i.marka or rok_new == i.rok or \
@@ -88,7 +88,7 @@ class Wypozyczalnia():
             self.wypisywanie_list(tab,"auto")
 
 
-    def szukaj_lodki_zagle(self, model_new, marka_new, rok_new, pasa_new, patent): #done
+    def szukaj_lodki_zagle(self, model_new, marka_new, rok_new, pasa_new, patent):
         tab = []
         for i in self.ll:
             if "J" in i.nazwa and (model_new == i.model or marka_new == i.marka or rok_new == i.rok or \
@@ -135,7 +135,7 @@ class Kalendarz():
         elif rob == 1:
             return True
 
-    def wypisz_wolne(self, rok, miesiac): #done
+    def wypisz_wolne(self, rok, miesiac):
         pocz = datetime.date(rok, miesiac, 1)
         n = monthrange(rok, miesiac)[1]
         print(month_name[miesiac])
