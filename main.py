@@ -69,8 +69,11 @@ W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
 lodka13.czy_wolne(date.today(), date.fromisoformat('2021-12-04'))
+lodka13.wypisz_wolne("2021", "12")
 lodka13.kal.najblizszy_rok[date.fromisoformat('2021-12-02')] = "zajete"
 lodka13.czy_wolne(date.today(), date.fromisoformat('2021-12-04'))
+
+lodka13.wypisz_wolne("2021", "12")
 
 kal = Kalendarz()
 

@@ -1,6 +1,8 @@
+import datetime
 import random
 import copy
 from datetime import date, timedelta
+from calendar import monthrange, month_name
 
 
 class Wypozyczalnia():
@@ -142,18 +144,35 @@ class Kalendarz():
             self.najblizszy_rok[dzien] = "wolne"
 
     def czy_wolne(self, pocz, kon):
-        i = 0
         rob = 1
-        #print(pocz, kon)
         while pocz <= kon:
             if self.najblizszy_rok[pocz] != "wolne":
                 rob = 0
             pocz = pocz + timedelta(days=1)
-        
         if rob == 0:
-            print("Niestety w tym terminie jednostka jest zajeta.")
+            return False
         elif rob == 1:
-            print("Jednostka wolna!")
+            return True
+
+    def wypisz_wolne(self, rok, miesiac): #done
+        pocz = datetime.date(rok, miesiac, 1)
+        n = monthrange(rok, miesiac)[1]
+        print(month_name[miesiac])
+        for i in range(n):
+            if self.najblizszy_rok[pocz] == "wolne": #strasznie nie pythonowo tylko w C ale trudno xD
+                if i < 9:
+                    x=" "
+                else:
+                    x=""
+                print(x + str(pocz.day), end =" ")
+            else:
+                print(" X", end =" ")
+            if i%7 == 6:
+                print()
+            pocz = pocz + timedelta(days=1)
+        print()
+    
+    
         
 
 

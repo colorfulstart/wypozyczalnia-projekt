@@ -10,7 +10,13 @@ class Jednostka():
         self.pasazerowie = liczba_pasazerow
         self.kal = Kalendarz()
     def czy_wolne(self, pocz, kon):
-        self.kal.czy_wolne(pocz, kon)
+        if self.kal.czy_wolne(pocz, kon) == True:
+            print("Jednostka wolna!")
+        else:
+            print("Niestety w tym terminie jednostka jest zajeta.")
+    def wypisz_wolne(self, rok, miesiac):
+        self.kal.wypisz_wolne(int(rok), int(miesiac))
+            
     
 
 class Samochod(Jednostka):
