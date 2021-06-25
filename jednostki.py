@@ -1,15 +1,42 @@
+from wypozyczalnia import Kalendarz
+from datetime import date
+
 class Jednostka():
-    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow):
+    def __init__(self, nazwa,  marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow):
         self.nazwa = nazwa
-        self.model = model
         self.marka = marka
+        self.model = model
         self.cena = cena_za_dobe
         self.rok = rok_produkcji
         self.pasazerowie = liczba_pasazerow
+        self.kal = Kalendarz()
 
-class Samochody(Jednostka):
-    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow):
-        Jednostka.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow)
+    def czy_wolne(self, pocz, kon):
+        if self.kal.czy_wolne(date.fromisoformat(pocz), date.fromisoformat(kon)) == True:
+            print("Jednostka wolna!")
+        else:
+            print("Niestety w tym terminie jednostka jest zajeta.")
+
+    def wypisz_wolne(self, rok, miesiac):
+        self.kal.wypisz_wolne(int(rok), int(miesiac))
+
+    def rezerwacja(self, pocz, kon, klient):
+        if self.kal.rezerwacja(date.fromisoformat(pocz), date.fromisoformat(kon), klient) == True:
+            suma = date.fromisoformat(kon) - date.fromisoformat(pocz)
+            suma = int(suma.days) + 1
+            suma *= self.cena
+            print(f"Brawo! Udało Ci się zarezerwować jednostkę w terminie od {pocz} do {kon}.")
+            print(f"Kwota twojego zamówienia wynosi: {suma} zł.")
+        else:
+            print(f"Niestety jednostka w terminie od {pocz} do {kon} jest zajęta.")
+
+
+            
+    
+
+class Samochod(Jednostka):
+    def __init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, liczba_drzwi, moc_silnika, spalanie, skrzynia_biegow):
+        Jednostka.__init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow)
         self.drzwi = liczba_drzwi
         self.moc = moc_silnika
         self.spalanie = spalanie
@@ -17,26 +44,26 @@ class Samochody(Jednostka):
 
     def wazne_info(self):
         return "Samochod: {} {} z {} (skrzynia biegow {}), ma miejsca na {} i jest {} drzwiowy. Moc jego silnika to {}KM, " \
-               "a spalanie ma na poziomie {}l/100km".format(self.model, self.marka, self.rok, self.skrzynia, self.pasazerowie,
+               "a spalanie ma na poziomie {}l/100km".format(self.marka, self.model, self.rok, self.skrzynia, self.pasazerowie,
                                                             self.drzwi, self.moc, self.spalanie)
 
     def info(self):
-        return [self.nazwa, self.model, self.marka, self.rok, self.pasazerowie, self.drzwi, self.skrzynia]
+        return [self.nazwa, self.marka, self.model, self.rok, self.pasazerowie, self.drzwi, self.skrzynia]
 
     def max_osob(self):
         return "Maksymalna liczba osob w pojezdzie to: {}".format(self.pasazerowie)
 
 
-class Lodki(Jednostka):
-    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent):
-        Jednostka.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow)
+class Lodka(Jednostka):
+    def __init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent):
+        Jednostka.__init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow)
         self.dlu = dlugosc
         self.max_zanu = max_zanurzenia
         self.ster = typ_steru
         self.patent = patent
 
     def info(self):
-        return [self.nazwa, self.model, self.marka, self.rok, self.pasazerowie, self.patent]
+        return [self.nazwa, self.marka, self.model, self.rok, self.pasazerowie, self.patent]
 
     def czy_patent(self):
         if self.patent == "nie":
@@ -45,9 +72,9 @@ class Lodki(Jednostka):
             return True
 
 
-class Zagle(Lodki):
-    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, liczba_koi):
-        Lodki.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
+class Zaglowka(Lodka):
+    def __init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, liczba_koi):
+        Lodka.__init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
         self.koje = liczba_koi
 
     def max_osob(self):
@@ -59,9 +86,9 @@ class Zagle(Lodki):
                                                                                                                  self.koje, self.dlu, self.max_zanu, self.ster, self.patent)
 
 
-class Motorowe(Lodki):
-    def __init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, silnik):
-        Lodki.__init__(self, nazwa, model, marka, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
+class Motorowka(Lodka):
+    def __init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent, silnik):
+        Lodka.__init__(self, nazwa, marka, model, cena_za_dobe, rok_produkcji, liczba_pasazerow, dlugosc, max_zanurzenia, typ_steru, patent)
         self.moc = silnik
 
     def max_osob(self):
