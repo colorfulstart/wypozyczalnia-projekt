@@ -20,9 +20,15 @@ class Jednostka():
 
     def rezerwacja(self, pocz, kon, klient):
         if self.kal.rezerwacja(date.fromisoformat(pocz), date.fromisoformat(kon), klient) == True:
+            suma = date.fromisoformat(kon) - date.fromisoformat(pocz)
+            suma = int(suma.days) + 1
+            suma *= self.cena
             print(f"Brawo! Udało Ci się zarezerwować jednostkę w terminie od {pocz} do {kon}.")
+            print(f"Kwota twojego zamówienia wynosi: {suma} zł.")
         else:
             print(f"Niestety jednostka w terminie od {pocz} do {kon} jest zajęta.")
+
+
             
     
 

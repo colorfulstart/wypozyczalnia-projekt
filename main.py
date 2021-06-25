@@ -1,7 +1,7 @@
 from jednostki import *
 from ludzie import *
 from wypozyczalnia import *
-from datetime import date, timedelta
+import sys
 
 # TESTOWANIE
 W1 = Wypozyczalnia("1", "Wrocław")
@@ -69,92 +69,132 @@ W1.dodaj_lodke(lodka13)
 W1.dodaj_lodke(lodka14)
 
 
-jan = Klient("Jan", "Kowalski")
-
-lodka13.kal.najblizszy_rok[date.fromisoformat('2021-12-02')] = "zajete"
-lodka13.czy_wolne("2021-06-27", '2021-12-04')
-
-lodka13.wypisz_wolne("2021", "12")
-
-lodka13.rezerwacja('2021-12-01', '2021-12-12', jan)
-
-lodka13.wypisz_wolne("2021", "12")
-
-kal = Kalendarz()
 
 # print(kal.najblizszy_rok)
-
 print("Witaj! Jak możemy Ci pomoc?")
-print("1. Chce zarezerwować samochód.")
-print("2. Chce zarezerwować lodke.")
-lodka_czy_auto = int(input("Wybierz numer: "))
-twoj_prac = random.choice(W1.lp)
-twoj_prac.przedstaw_sie()
 
-if lodka_czy_auto == 1: #chcemy samochod
-    print("Chcesz zobaczyc wszystkie dostepne samochody, czy szukasz czegos konkretnego?")
-    print("1. Pokaz dostepne samochody")
-    print("2. Szukam czegos konkretnego")
-    wszystkie_czy_konkret = int(input("Twój wybor: "))
-    if wszystkie_czy_konkret == 1:
-        W1.ile_samochodow()
-        W1.wypisz_samochody()
-    elif wszystkie_czy_konkret == 2:
-        print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
+while True:
+    print("1. Chce zarezerwować samochód.")
+    print("2. Chce zarezerwować lodke.")
+    print("0. Chce zakończyć na dzisiaj.")
+    lodka_czy_auto = int(input("Wybierz numer: "))
+    if lodka_czy_auto == 0:
+        sys.exit()
 
-        marka = input("Marka samochodu: ")
-        model = input("Model samochodu: ")
-        rok = input("Rok produkcji: ")
-        pasa = input("Ile maksymalnie pasazerow: ")
-        drzwi = input("Ilu drzwiowy: ")
-        biegi = input("Jaka skrzynia biegow (automat/manual): ")
+    twoj_prac = random.choice(W1.lp)
+    twoj_prac.przedstaw_sie()
 
-        print("W podanej konfiguracji mamy takie samochody:")
-        W1.szukaj_auta(model, marka, rok, pasa, drzwi, biegi)
-
-elif lodka_czy_auto == 2: #chcemy lodke
-    print("Jaka lodz?")
-    print("1. zaglowa")
-    print("2. motorowa")
-    zag_czy_moto = int(input("Wybierz rodzaj lodzi i wpisz odpowiadajacy mu numer: "))
-    if zag_czy_moto == 1: #lodka zaglowa
-        print("Chcesz zobaczyc dostepne lodki zaglowe, czy szukasz czegos konkretnego?")
-        print("1. Pokaz dostepne")
+    if lodka_czy_auto == 1: #chcemy samochod
+        print("Chcesz zobaczyc wszystkie dostepne samochody, czy szukasz czegos konkretnego?")
+        print("1. Pokaz dostepne samochody")
         print("2. Szukam czegos konkretnego")
         wszystkie_czy_konkret = int(input("Twój wybor: "))
         if wszystkie_czy_konkret == 1:
-            W1.wypisz_lodki("zagl")
+            W1.ile_samochodow()
+            W1.wypisz_samochody()
         elif wszystkie_czy_konkret == 2:
-            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")    
-            marka = input("Marka lodzi: ")
-            model = input("Model lodzi: ")
+            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")
+
+            marka = input("Marka samochodu: ")
+            model = input("Model samochodu: ")
             rok = input("Rok produkcji: ")
             pasa = input("Ile maksymalnie pasazerow: ")
-            patent = input("Masz patent? (tak/nie): ")
+            drzwi = input("Ilu drzwiowy: ")
+            biegi = input("Jaka skrzynia biegow (automat/manual): ")
+
             print("W podanej konfiguracji mamy takie samochody:")
-            print(W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent))
+            W1.szukaj_auta(model, marka, rok, pasa, drzwi, biegi)
+    elif lodka_czy_auto == 2: #chcemy lodke
+        print("Jaka lodz?")
+        print("1. zaglowa")
+        print("2. motorowa")
+        zag_czy_moto = int(input("Wybierz rodzaj lodzi i wpisz odpowiadajacy mu numer: "))
+        if zag_czy_moto == 1: #lodka zaglowa
+            print("Chcesz zobaczyc dostepne lodki zaglowe, czy szukasz czegos konkretnego?")
+            print("1. Pokaz dostepne")
+            print("2. Szukam czegos konkretnego")
+            wszystkie_czy_konkret = int(input("Twój wybor: "))
+            if wszystkie_czy_konkret == 1:
+                W1.wypisz_lodki("zagl")
+            elif wszystkie_czy_konkret == 2:
+                print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")    
+                marka = input("Marka lodzi: ")
+                model = input("Model lodzi: ")
+                rok = input("Rok produkcji: ")
+                pasa = input("Ile maksymalnie pasazerow: ")
+                patent = input("Masz patent? (tak/nie): ")
+                print("W podanej konfiguracji mamy takie samochody:")
+                print(W1.szukaj_lodki_zagle(model, marka, rok, pasa, patent))
 
-    elif zag_czy_moto == 2: #lodki motorowe
-        print("Chcesz zobaczyc dostepne lodki motorowe, czy szukasz czegos konkretnego?")
-        print("1. Pokaz dostepne")
-        print("2. Szukam czegos konkretnego")
-        wszystkie_czy_konkret = int(input("Twój wybor: "))
-        if wszystkie_czy_konkret == 1:
-            W1.wypisz_lodki("moto")
-        elif wszystkie_czy_konkret == 2:
-            print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")            
-            marka = input("Marka lodzi: ")
-            model = input("Model lodzi: ")
-            rok = input("Rok produkcji: ")
-            pasa = input("Ile maksymalnie pasazerow: ")
-            patent = input("Masz patent? (tak/nie): ")
-            print("W podanej konfiguracji mamy takie samochody:")
-            print(W1.szukaj_lodki_motor(model, marka, rok, pasa, patent))
+        elif zag_czy_moto == 2: #lodki motorowe
+            print("Chcesz zobaczyc dostepne lodki motorowe, czy szukasz czegos konkretnego?")
+            print("1. Pokaz dostepne")
+            print("2. Szukam czegos konkretnego")
+            wszystkie_czy_konkret = int(input("Twój wybor: "))
+            if wszystkie_czy_konkret == 1:
+                W1.wypisz_lodki("moto")
+            elif wszystkie_czy_konkret == 2:
+                print("Wpisz dane, które cie interesuja, jeśli jest Ci to obojetne to nie wpisuj nic:")            
+                marka = input("Marka lodzi: ")
+                model = input("Model lodzi: ")
+                rok = input("Rok produkcji: ")
+                pasa = input("Ile maksymalnie pasazerow: ")
+                patent = input("Masz patent? (tak/nie): ")
+                print("W podanej konfiguracji mamy takie samochody:")
+                print(W1.szukaj_lodki_motor(model, marka, rok, pasa, patent))
 
+    
+    while True:
+        print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego kod, by zobaczyć szczegółowe informacje na jego temat.")
+        print("Jeśli chcesz wrócić do początku wpisz 0.")
+        nr = input("Wpisz kod: ")
+        if nr == '0':
+            break
+        wybrana_jedn = W1.lj[nr]
+        if wybrana_jedn is None:
+            print("Zły kod!!!")
+            continue
+        break
+    print("Podaj swoje imie i nazwisko aby kontynuować.")
+    imie = input("Imie: ")
+    nazw = input("Nazwisko: ")
+    kli = Klient(imie, nazw)
+    a = W1.znajdz_klienta(kli)
+    if a == False:
+        print("Witamy po raz pierwszy w naszej wypożyczalni!")
+        W1.dodaj_klienta(kli)
+    else:
+        print("Witamy ponownie!")
+        kli = a
 
-print("Jeśli któryś samochód/łódka Ci sie spodobał, podaj jego kod, by zobaczyć szczegółowe informacje na jego temat")
-nr = input("Wpisz kod: ")
-
-for i in W1.lj.keys():
-    if i == nr:
-        print(W1.lj[i].wazne_info())
+    while True:
+        print("Co chcesz zrobić?")
+        print("1. Sprawdzić czy jednostka jest wolna.")
+        print("2. Pokazać dostępność na dany miesiąc.")
+        print("3. Sprawdzić swoją kwotę wynajmu.")
+        print("4. Dokonać rezerwacji.")
+        print("0. Wrócić do początku.")
+        wybor_wynaj = int(input("Twój wybor: "))
+        if wybor_wynaj == 1:
+            print("Podaj zakres dat w którym chcesz sprawdzić dostępność.")
+            print("Podaj je w formacie rrrr-mm-dd")
+            pocz = input("Data początkowa: ")
+            kon = input("Data końcowa: ")
+            wybrana_jedn.czy_wolne(pocz, kon)
+        elif wybor_wynaj == 2:
+            print("Podaj rok i numer miesiąca, dla którego chcesz sprawdzić dostępność.")
+            print("X oznacza, że jednostka jest niedostępna")
+            rok = input("Rok (np. 2021): ")
+            nr_msc = input("Numer miesiaca (np. 6): ")
+            wybrana_jedn.wypisz_wolne(rok, nr_msc)
+        elif wybor_wynaj == 3:
+            suma = kli.cena_za_wynajem(W1)
+            print(f"Masz zarezerwowane jednostki na łączną kwotę {suma} zł.")
+        elif wybor_wynaj == 4:
+            print("Podaj zakres dat w którym chcesz zarezerwować jednostkę.")
+            print("Podaj je w formacie rrrr-mm-dd")
+            pocz = input("Data początkowa: ")
+            kon = input("Data końcowa: ")
+            wybrana_jedn.rezerwacja(pocz, kon, kli)
+        elif wybor_wynaj == 0:
+            break

@@ -1,6 +1,4 @@
 import datetime
-import random
-import copy
 from datetime import date, timedelta
 from calendar import monthrange, month_name
 
@@ -13,7 +11,7 @@ class Wypozyczalnia():
         self.ls = [] #lista samochodów
         self.ll = [] #lista lodek
         self.lp = [] #lista pracownikow
-        self.lsk = [] #lista stalych klientow
+        self.lk = [] #lista stalych klientow
         self.rez = [] #lista rezerwacji
 
     def wypisywanie_list(self, tab, auto_czy_lodz):
@@ -65,6 +63,15 @@ class Wypozyczalnia():
     def dodaj_pracownika(self, pracownik):
         self.lp.append(pracownik)
 
+    def dodaj_klienta(self, klient):
+        self.lk.append(klient)
+
+    def znajdz_klienta(self, klient):
+        for i in self.lk:
+            if i.imie == klient.imie and i.nazw == klient.nazw:
+                return i
+        return False
+
     def dodaj_auto(self, auto):
         self.ls.append(auto)
         self.lj[auto.nazwa] = auto
@@ -112,27 +119,6 @@ class Wypozyczalnia():
         else:
             self.wypisywanie_list(tab,"lodz")
 
-
-
-
-
-class Rezerwacja():
-    def __init__(self, nr, nazwa_uzytkownika, nr_sprzetu, od_kiedy, do_kiedy):
-        self.nr = nr
-        self.nazwa = nazwa_uzytkownika
-        self.sprzet = nr_sprzetu
-        self.od = od_kiedy
-        self.do = do_kiedy
-        self.lrez = [] #lista rezerwacji
-        self.kasa = 0
-'''
-    def kwota(self): #tuatj musze pozamieniac!!!!
-        self.kasa = (self.do - self.od)*self.sprzet.cena
-        if self.nazwa in Wypozyczalnia.ile_stalych_klientow():
-            self.kasa = self.kasa*staly_klient.jaka_znizka()
-        return self.kasa
-'''
-    #def dodaj_rezerwacje(self):
 
 
 class Kalendarz():
